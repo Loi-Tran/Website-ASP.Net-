@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="~/Assets/client/css/bootstrap-3.1.1.min.css" rel="stylesheet" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/Assets/client/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="~/Assets/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <!-- Font Awesome -->
+    <link href="~/Assets/admin/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Youth Fashion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='//fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+    <!-- start menu -->
+    <script src="~/Assets/client/js/bootstrap.min.js"></script>
+    <script src="~/Assets/client/js/simpleCart.min.js"></script>
+    <!-- slide -->
+    <script src="~/Assets/client/js/responsiveslides.min.js"></script>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                speed: 500,
+                namespace: "rslides",
+                pager: false,
+            });
+        });
+    </script>
+    <!-- animation-effect -->
+    <link href="~/Assets/client/css/animate.min.css" rel="stylesheet">
+    <script src="~/Assets/client/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!-- //animation-effect -->
+    @RenderSection("header", required: false)
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="col-sm-4 logo animated wow fadeInLeft" data-wow-delay=".5s">
+                    <h1><a href="https://localhost:44300/">Youth <span>Fashion</span></a></h1>
+                </div>
+                <div class="col-sm-4 world animated wow fadeInRight" data-wow-delay=".5s">
+                    <div class="cart box_1">
+                        @{ 
+                            int soluong = 0;
+                            if (!System.Web.HttpContext.Current.Session["MyCart"].Equals(""))
+                            {
+                                List<CartItem> listcart= (List<CartItem>)System.Web.HttpContext.Current.Session["MyCart"];
+                                soluong = listcart.Count();
+                            }
+                        }
+                        <a href="~/gio-hang">
+                            <h3>
+                                @soluong
+                                <img src="~/Assets/client/images/cart.png" alt="" />
+                            </h3>
+                        </a>
+                        <p><h5 >Giỏ hàng</h5></p>
+                    </div>
+                </div>
+                <div class="col-sm-2 number animated wow fadeInRight" data-wow-delay=".5s">
+                    <span><i class="glyphicon glyphicon-phone"></i>085 596 234</span>
+                    <p>Call me</p>
+                </div>
+                <div class="col-sm-2 search animated wow fadeInRight" data-wow-delay=".5s">
+                    @if (Session["UserCustomer"].Equals(""))
+                    {
+                        <a class="nav-link py-0 text-dark" href="~/dang-nhap"><i class="fas fa-user"> Đăng nhập</i></a>
+                    }
+                    else
+                    {
+                        <a class="nav-link py-0 text-dark" href="~/Khachhang/DangXuat"><i class="fas fa-user"> Đăng xuất</i></a>
+                    }
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="head-top">
+                <div class="n-avigation">
+                    <nav class="navbar nav_bottom" role="navigation">
+                        @Html.Action("MainMenu", "Module")
+                        
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---pop-up-box---->
+    <link href="~/Assets/client/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="~/Assets/client/js/jquery.magnific-popup.js" type="text/javascript"></script>
+    <!---//pop-up-box---->
+    <div id="small-dialog" class="mfp-hide">
+        <div class="search-top">
+            <div class="login">
+                <form action="#" method="post">
+                    <input type="submit" value="">
+                    <input type="text" name="search" value="Type something..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+
+                </form>
+            </div>
+            <p>	Shopping</p>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+        });
+    </script>
+    <!---->
+    @RenderBody()
+    <!--footer-->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="col-md-6 top-footer animated wow fadeInLeft" data-wow-delay=".5s">
+                    <h3>Follow Us On</h3>
+                    <div class="social-icons">
+                        <ul class="social">
+                            <li><a href="#"><i></i></a> </li>
+                            <li><a href="#"><i class="facebook"></i></a></li>
+                            <li><a href="#"><i class="google"></i> </a></li>
+                            <li><a href="#"><i class="linked"></i> </a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-6 top-footer1 animated wow fadeInRight" data-wow-delay=".5s">
+                    <h3>Newsletter</h3>
+                    <form action="#" method="post">
+                        <input type="text" name="email" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+                        <input type="submit" value="SUBSCRIBE">
+                    </form>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="col-md-3 footer-bottom-cate animated wow fadeInLeft" data-wow-delay=".5s">
+                    @Html.Action("MenuFooter", "Module")
+                </div>
+                <div class="col-md-3 footer-bottom-cate animated wow fadeInLeft" data-wow-delay=".5s">
+                    @Html.Action("MenuCategoryFooter", "Module")
+                </div>
+
+                <div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">
+                    <h6>Địa chỉ</h6>
+                    <ul>
+                        <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : 12th Avenue, 5th block, <span>Sydney.</span></li>
+                        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:info@example.com">info@example.com</a></li>
+                        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +1234 567 567</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-bottom-cate animated wow fadeInRight" data-wow-delay=".5s">
+                    <h6>Xu hướng</h6>
+                    <video width="300" height="180" controls>
+                        <source src="~/Assets/client/images/videothoitrang.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="clearfix"> </div>
+                <p class="footer-class animated wow fadeInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;"> © 2021 Youth Fashion . All Rights Reserved | Design by <a href="https://www.facebook.com/profile.php?id=100011997992866" target="_blank">Loi Tran</a> </p>
+            </div>
+        </div>
+    </div>
+    @RenderSection("footer", required: false)
+    <!--footer-->
+</body>
+</html>

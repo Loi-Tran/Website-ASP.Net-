@@ -1,0 +1,101 @@
+﻿@model MyClass.Models.Feedback
+
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <!--//header-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
+                <li><a href="https://localhost:44300/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">Liên hệ</li>
+            </ol>
+        </div>
+    </div>
+    <div class="contact">
+        <div class="container">
+            <h3>Liên hệ</h3>
+            <div class="form-group">
+              
+                @if (ViewBag.Success != null)
+                {
+                    <div class="alert alert-success">@ViewBag.Success</div>
+                }
+            </div>
+            <div class="contact-grids">
+                <div class="contact-form">
+                    <form action="#" method="post">
+                        <div class="contact-bottom">
+                            <div class="col-md-4 in-contact">
+                                <span>Tên</span>
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-4 in-contact">
+                                <span>Email</span>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-4 in-contact">
+                                <span>Số điện thoại</span>
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+
+                        <div class="contact-bottom-top">
+                            <span>Tin nhắn</span>
+                            @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                        </div>
+                        <input type="submit" value="Gửi">
+                        <div class="form-group my-2 text-danger">
+                            @Html.Raw(ViewBag.Error)
+                        </div>
+                    </form>
+                </div>
+                <div class="address">
+                    <div class=" address-more">
+                        <h2>Địa chỉ</h2>
+                        <div class="col-md-4 address-grid">
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            <div class="address1">
+                                <p>Lorem ipsum dolor</p>
+                                <p>TL 19034-88974</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="col-md-4 address-grid ">
+                            <i class="glyphicon glyphicon-phone"></i>
+                            <div class="address1">
+                                <p>+885699655</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="col-md-4 address-grid ">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <div class="address1">
+                                <p><a href="mailto:example.com"> example.com</a></p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//content-->
+    <!--map-->
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279847.2716062404!2d145.46948275!3d-36.60289065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad4314b7e18954f%3A0x5a4efce2be829534!2sVictoria%2C+Australia!5e0!3m2!1sen!2sin!4v1443674224626" width="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <!--//map-->
+}

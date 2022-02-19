@@ -1,0 +1,98 @@
+﻿@model IEnumerable<MyClass.Models.Feedback>
+
+@{
+    ViewBag.Title = "Tất cả liên hệ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header {
+
+    <link href="~/Assets/admin/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+@section footer {
+
+    <script src="~/Assets/admin/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper my-2">
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong class="text-danger text-uppercase">Tất cả danh mục liên hệ</strong>
+                    </div>
+                    <div class="col-md-6 text-right">                      
+                        <a href="@Url.Action("Trash","Feedback")" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>Thùng rác</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.Partial("Message")
+                <table class="table table-bordered table-striped" id="myTable">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width:20px;">#</th>
+                            <th>Tên</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th style="width:300px;">Nội dung</th>
+                            <th class="text-center" style="width:180px;">Chức năng</th>
+                            <th class="text-center" style="width:20px;">ID</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkId" value="" />
+                            </td>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                @item.Phone
+                            </td>
+                            <td>
+                                @item.Email
+                            </td>
+                            <td>
+                                @item.Content
+                            </td>
+                            <td class="text-center">
+                                @if (item.Status == 1)
+                                {
+                                    <a href="@Url.Action("Status","Feedback", new { id = item.ID })" class="btn btn-sm btn-secondary"><i class="fas fa-toggle-on"> Đang chờ...</i></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Status","Feedback", new { id = item.ID })" class="btn btn-sm btn-success"><i class="fas fa-toggle-off"> Đã trả lời</i></a>
+                                }            
+                                <a href="@Url.Action("DelTrash","Feedback", new { id = item.ID })" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+                            <td>
+                                @item.ID
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

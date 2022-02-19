@@ -1,0 +1,54 @@
+﻿@model MyClass.Models.Post
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
+            <li><a href="https://localhost:44300/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active">@Model.Name</li>
+        </ol>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-5">
+        <h2 class="animated wow fadeInDown animated" data-wow-delay=".5s ">@Model.Name</h2>
+        <div class="text-center animated wow fadeInRight animated" data-wow-delay=".5s "><img src="~/Assets/client/images/abouts/@Model.Image" width="900" height="400" /></div>
+
+        <p class="animated wow fadeInUp animated" data-wow-delay=".5s ">@Html.Raw(Model.Detail)</p>
+    </div>
+    <div class="row mb-5">
+        <h3 class="animated wow fadeInLeft" data-wow-delay=".5s">- Bài viết khác:</h3>
+        <form class="form-horizontal">
+            @foreach (var post in ViewBag.ListOther)
+            {
+                <div class="form-group form-group-lg">
+                    <div class="col-sm-1 animated wow fadeInUp animated" data-wow-delay=".5s">
+                        <div class="content-grid-effect slow-zoom ">
+                            <div class="img-box ">
+                                <a href="~/@post.Slug">
+                                    <img src="~/Assets/client/images/abouts/@post.Image" alt="image" class="img-responsive zoom-img" >
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-11 animated wow fadeInRight animated" data-wow-delay=".5s">
+                        <div class="card-body">
+                            <h4 class="blog-post-title">
+                                <a href="~/@post.Slug">@post.Name</a>
+                            </h4>
+                            <div class="blog-post-meta">
+                            </div>
+
+                            <p class="card-text"><small class="text-muted">@XString.Str_Limit(post.Detail, 150)</small></p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </form>
+    </div>
+    </div>

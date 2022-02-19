@@ -1,0 +1,20 @@
+﻿@model MyClass.Models.Post
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
+            <li><a href="https://localhost:44300/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active">@Model.Name</li>
+        </ol>
+    </div>
+</div>
+<div class="products">
+    <div class="container">
+        <h2 class="animated wow fadeInDown animated" data-wow-delay=".5s ">@Model.Name</h2>
+        <p class="animated wow fadeInUp animated" data-wow-delay=".5s ">@Html.Raw(Model.Detail)</p>
+    </div>
+</div>

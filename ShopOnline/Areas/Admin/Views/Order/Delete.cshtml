@@ -1,0 +1,81 @@
+﻿@model MyClass.Models.Order
+
+@{
+    ViewBag.Title = "Xóa danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper my-2">
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong class="text-danger text-uppercase">Xác nhận xóa đơn hàng</strong>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="@Url.Action("Edit", "Order", new { id = Model.ID })" class="btn btn-sm btn-success"><i class="fas fa-edit"></i>Cập nhật</a>
+                            <a class="btn btn-sm btn-info" href="@Url.Action("Index", "Order")"><i class="fas fa-backward"></i>  Quay về danh sách</a>
+                            <button class="btn btn-sm btn-danger" type="submit"><i class="fas fa-trash-alt"></i>Xóa</button>                     
+                        </div>
+                    </div>
+                }
+                </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th style="width:120px">Tên trường</th>
+                        <th>Nội dung</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.UserId)</td>
+                        <td> @Html.DisplayFor(model => model.UserId)</td>
+                    </tr>
+                    <tr>
+                        <td> @Html.DisplayNameFor(model => model.ReceiverAddress)</td>
+                        <td>@Html.DisplayFor(model => model.ReceiverAddress)</td>
+                    </tr>
+                    <tr>
+                        <td>  @Html.DisplayNameFor(model => model.ReceiverPhone)</td>
+                        <td> @Html.DisplayFor(model => model.ReceiverPhone)</td>
+                    </tr>
+                    <tr>
+                        <td> @Html.DisplayNameFor(model => model.Note)</td>
+                        <td> @Html.DisplayFor(model => model.Note)</td>
+                    </tr>
+                    <tr>
+                        <td> @Html.DisplayNameFor(model => model.CreatedDate)</td>
+                        <td>@Html.DisplayFor(model => model.CreatedDate)</td>
+                    </tr>
+                    <tr>
+                        <td> @Html.DisplayNameFor(model => model.CreatedBy)</td>
+                        <td>@Html.DisplayFor(model => model.CreatedBy)</td>
+                    </tr>
+                    <tr>
+                        <td> @Html.DisplayNameFor(model => model.ModifieDate)</td>
+                        <td> @Html.DisplayFor(model => model.ModifieDate)</td>
+                    </tr>
+                    <tr>
+                        <td> @Html.DisplayNameFor(model => model.ModifieBy)</td>
+                        <td> @Html.DisplayFor(model => model.ModifieBy)</td>
+                    </tr>
+                    <tr>
+                        <td> @Html.DisplayNameFor(model => model.Status)</td>
+                        <td>  @Html.DisplayFor(model => model.Status)</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
